@@ -1,4 +1,4 @@
-package com.test.evaluacionJava.Controller;
+package com.test.javaSmartJob.controller;
 
 import java.util.ArrayList;
 import java.util.Calendar;
@@ -9,11 +9,9 @@ import java.util.regex.Pattern;
 import java.util.regex.Matcher;
 
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -21,31 +19,24 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.test.evaluacionJava.model.Usuario;
-import com.test.evaluacionJava.repository.UsuarioRepository;
+import com.test.javaSmartJob.model.User;
+import com.test.javaSmartJob.repository.UserRepository;
 
 @RestController
 @RequestMapping("/api")
-public class UsuarioController {
+public class UserController {
 	
 	@Autowired
-	private UsuarioRepository repository;
-	
-	
-	@GetMapping("/usuarios")
+	private UserRepository repository;
+
+	@GetMapping("/user")
 	@ResponseStatus(HttpStatus.OK)
-	public List<Usuario> allPersons(){
-		return repository.findAll();
+	public List<User> findBy(@RequestBody User usuario) {
+		return repository.findBy(usuario.email);
 	}
 	
-	@GetMapping("/usuario/info")
-	@ResponseStatus(HttpStatus.OK)
-	public List<Usuario> findInfo(@RequestBody Usuario usuario) {
-		return repository.findByEmail(usuario.email);
-	}
-	
-	@PostMapping("/usuario")
-	public List<Object> createPerson(@RequestBody Usuario usuario) {
+	@PostMapping("/user")
+	public List<Object> createPerson(@RequestBody User user) {
 		
 		List<Object> respuesta = new ArrayList();
 		Map<String, String> Mensaje = new HashMap<>();
@@ -53,16 +44,16 @@ public class UsuarioController {
 		Pattern pattern = Pattern.compile("^[_A-Za-z0-9-\\+]+(\\.[_A-Za-z0-9-]+)*@"
                         + "[A-Za-z0-9-]+(\\.[A-Za-z0-9]+)*(\\.[A-Za-z]{2,})$");
  
-        Matcher mather = pattern.matcher(usuario.email);
+        Matcher mather = pattern.matcher(user.email);
         
         Calendar today = Calendar.getInstance();
-		usuario.created = today.getTime();
-		usuario.modified = today.getTime();
-		usuario.last_login = today.getTime();
-		usuario.isactive = true;
-		usuario.id = (long) 35;
+        user.created = today.getTime();
+        user.modified = today.getTime();
+        user.lastLogin = today.getTime();
+        user.isActive = true;
+        user.id = (long) 35;
 		
-		if(!repository.findByEmail(usuario.email).isEmpty()) {
+		if(!repository.findBy(user.email).isEmpty()) {
 			Mensaje.put("Mensaje Error", "El correo ya se encuentra registrado");
 			respuesta.add(HttpStatus.BAD_REQUEST);
 			respuesta.add(Mensaje);
@@ -76,22 +67,22 @@ public class UsuarioController {
 			Mensaje.put("Mensaje", "Registro creado");
 			respuesta.add(HttpStatus.OK);
 			respuesta.add(Mensaje);
-			//repository.save(usuario);
+			repository.save(user);
 			return respuesta;
 		}	
 	}
 	
-	@PutMapping("/usuario/actualiza")
-	public Usuario updatePerson(@RequestBody Usuario usuario) {
+	@PutMapping("/user")
+	public User updatePerson(@RequestBody User user) {
 		Calendar today = Calendar.getInstance();
-		usuario.modified = today.getTime();
-		usuario.last_login = today.getTime();
-		return repository.save(usuario);
+		user.modified = today.getTime();
+		user.lastLogin = today.getTime();
+		return repository.save(user);
 	}
 	
-	@DeleteMapping("/usuario/eliminar")
-	public void deletePerson(@RequestBody Usuario usuario) {
-		repository.delete(usuario);
+	@DeleteMapping("/user")
+	public void deletePerson(@RequestBody User user) {
+		repository.delete(user);
 	}
 
 } 

@@ -1,4 +1,4 @@
-package com.test.evaluacionJava.model;
+package com.test.javaSmartJob.model;
 
 import java.util.Date;
 import jakarta.persistence.Column;
@@ -12,9 +12,9 @@ import org.springframework.data.annotation.CreatedDate;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "usuario")
+@Table(name = "user")
 @EntityListeners(AuditingEntityListener.class)
-public class Usuario {
+public class User {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
@@ -24,25 +24,25 @@ public class Usuario {
 	@CreatedDate
 	public Date created;
 	public Date modified;
-	public Date last_login;
-	public Boolean isactive;
+	public Date lastLogin;
+	public Boolean isActive;
 	public String email;
 	public String password;
 	
-	public Usuario() {
+	public User() {
 
 	}
 
-	public Usuario( Long id,  
+	public User( Long id,  
 					Date created, 
 					Date modified, 
-					Date last_login, 
-					Boolean isactive) {
+					Date lastLogin, 
+					Boolean isActive) {
 		this.id = id;
 		this.created = created;
 		this.modified = modified;
-		this.last_login = last_login;
-		this.isactive = isactive;
+		this.lastLogin = lastLogin;
+		this.isActive = isActive;
 
 	}
 	
@@ -71,19 +71,19 @@ public class Usuario {
 	}
 	
 	public Date getLastLogin() {
-		return last_login;
+		return lastLogin;
 	}
 
 	public void setLastLogin(Date last_login) {
-		this.last_login = last_login;
+		this.lastLogin = lastLogin;
 	}
 	
 	public Boolean getIsActive() {
-		return isactive;
+		return isActive;
 	}
 
 	public void setIsActive(Boolean isactive) {
-		this.isactive = isactive;
+		this.isActive = isActive;
 	}
 
 }

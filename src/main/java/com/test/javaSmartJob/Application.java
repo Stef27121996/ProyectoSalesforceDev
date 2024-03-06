@@ -1,4 +1,4 @@
-package com.test.evaluacionJava;
+package com.test.javaSmartJob;
 
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -6,10 +6,10 @@ import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
 @SpringBootApplication
 @EnableJpaAuditing
-public class EvaluacionJavaApplication {
+public class Application {
 
 	public static void main(String[] args) {
-		SpringApplication.run(EvaluacionJavaApplication.class, args);
+		SpringApplication.run(Application.class, args);
 	}
 
 }

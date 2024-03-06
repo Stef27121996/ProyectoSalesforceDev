@@ -1,4 +1,4 @@
-package com.test.evaluacionJava.model;
+package com.test.javaSmartJob.model;
 
 import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
@@ -10,33 +10,33 @@ import jakarta.persistence.Table;
 import org.springframework.data.jpa.domain.support.AuditingEntityListener;
 
 @Entity
-@Table(name = "telefono")
+@Table(name = "phone")
 @EntityListeners(AuditingEntityListener.class)
-public class Telefono {
+public class Phone {
 	
 	@Id
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long id;
 
 	private Integer number;
-	private Integer citycode;
-	private Integer countrycode;
-	private Integer usuario;	
+	private Integer cityCode;
+	private Integer countryCode;
+	private Integer user;	
 
-	public Telefono() {
+	public Phone() {
 
 	}
 
-	public Telefono(Long id, 
+	public Phone(Long id, 
 					Integer number, 
-					Integer citycode, 
-					Integer countrycode, 
-					Integer usuario) {
+					Integer cityCode, 
+					Integer countryCode, 
+					Integer user) {
 		this.id = id;
 		this.number = number;
-		this.citycode = citycode;
-		this.countrycode = countrycode;
-		this.usuario = usuario;
+		this.cityCode = cityCode;
+		this.countryCode = countryCode;
+		this.user = user;
 	}
 	
 	public Long getId() {
@@ -56,26 +56,26 @@ public class Telefono {
 	}
 	
 	public Integer getCityCode() {
-		return citycode;
+		return cityCode;
 	}
 
 	public void setCityCode(Integer citycode) {
-		this.citycode = citycode;
+		this.cityCode = cityCode;
 	}
 	
 	public Integer getCountryCode() {
-		return countrycode;
+		return countryCode;
 	}
 
-	public void setCountryCode(Integer countrycode) {
-		this.countrycode = countrycode;
+	public void setCountryCode(Integer countryCode) {
+		this.countryCode = countryCode;
 	}
 	
 	public Integer getUsuario() {
-		return usuario;
+		return user;
 	}
 
 	public void setUsuario(Integer usuario) {
-		this.usuario = usuario;
+		this.user = usuario;
 	}
 }
