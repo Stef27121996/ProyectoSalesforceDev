@@ -1,10 +1,10 @@
-package com.test.evaluacionJava;
+package com.test.javaSmartJob;
 
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
 @SpringBootTest
-class EvaluacionJavaApplicationTests {
+class ApplicationTests {
 
 	@Test
 	void contextLoads() {

@@ -1,4 +1,8 @@
-Se entrega la solución al problema planteado para la evalución de JAVA
-En la carpeta de evaluacionJava se encuentra el desarrollo del microservicio solicitado en Java mediante Springboot
-En el archivo Script Base de datos.txt se encuentra el Script utilizado para la creación de tablas y registros dentro de la base de datos
-En la carpeta HSQLDB están los archivos generados para el banco de datos en memoria, en este caso mediante HSQLDB 
+Se entrega la solución de la API REST de creación de usuarios, el cual acepta y retorna datos únicamente en formato de JSON.
+
+Inicialmente la base de datos que almacena la información de los usuarios está dada por un diagrama entidad relación como el siguiente: 
+
+![](D:\Test Java Developer Salesforce\docs\DiagramaER.png)
+
+El script para crear un ejemplo de esta base de datos, se encuentra en la carpeta docs del repositorio.
+
